@@ -1,0 +1,46 @@
+enum AuthRole {
+  ADMIN
+  USER
+}
+
+type Category {
+  id: ID! @id
+  title: String! @unique
+  rooms: [Room]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type User {
+  id: ID! @id
+  firstName: String!
+  lastName: String!
+  avatar: String
+  email: String! @unique
+  password: String!
+	role: AuthRole! @default(value: USER)
+  friends: [User]!
+  rooms: [Room]!
+  messages: [Message]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Room {
+  id: ID! @id
+  category: Category!
+  title: String!
+  users: [User]!
+  messages: [Message]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Message {
+  id: ID! @id
+  text: String!
+  room: Room!
+  author: User!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
