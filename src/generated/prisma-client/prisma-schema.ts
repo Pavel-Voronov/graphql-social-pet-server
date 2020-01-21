@@ -18,11 +18,6 @@ type AggregateUser {
   count: Int!
 }
 
-enum AuthRole {
-  ADMIN
-  USER
-}
-
 type BatchPayload {
   count: Long!
 }
@@ -511,6 +506,11 @@ type Query {
   node(id: ID!): Node
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 type Room {
   id: ID!
   category: Category!
@@ -833,7 +833,7 @@ type User {
   avatar: String
   email: String!
   password: String!
-  role: AuthRole!
+  role: Role!
   friends(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   rooms(where: RoomWhereInput, orderBy: RoomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Room!]
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
@@ -854,7 +854,7 @@ input UserCreateInput {
   avatar: String
   email: String!
   password: String!
-  role: AuthRole
+  role: Role
   friends: UserCreateManyInput
   rooms: RoomCreateManyWithoutUsersInput
   messages: MessageCreateManyWithoutAuthorInput
@@ -882,7 +882,7 @@ input UserCreateWithoutMessagesInput {
   avatar: String
   email: String!
   password: String!
-  role: AuthRole
+  role: Role
   friends: UserCreateManyInput
   rooms: RoomCreateManyWithoutUsersInput
 }
@@ -894,7 +894,7 @@ input UserCreateWithoutRoomsInput {
   avatar: String
   email: String!
   password: String!
-  role: AuthRole
+  role: Role
   friends: UserCreateManyInput
   messages: MessageCreateManyWithoutAuthorInput
 }
@@ -932,7 +932,7 @@ type UserPreviousValues {
   avatar: String
   email: String!
   password: String!
-  role: AuthRole!
+  role: Role!
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1022,10 +1022,10 @@ input UserScalarWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
-  role: AuthRole
-  role_not: AuthRole
-  role_in: [AuthRole!]
-  role_not_in: [AuthRole!]
+  role: Role
+  role_not: Role
+  role_in: [Role!]
+  role_not_in: [Role!]
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -1071,7 +1071,7 @@ input UserUpdateDataInput {
   avatar: String
   email: String
   password: String
-  role: AuthRole
+  role: Role
   friends: UserUpdateManyInput
   rooms: RoomUpdateManyWithoutUsersInput
   messages: MessageUpdateManyWithoutAuthorInput
@@ -1083,7 +1083,7 @@ input UserUpdateInput {
   avatar: String
   email: String
   password: String
-  role: AuthRole
+  role: Role
   friends: UserUpdateManyInput
   rooms: RoomUpdateManyWithoutUsersInput
   messages: MessageUpdateManyWithoutAuthorInput
@@ -1095,7 +1095,7 @@ input UserUpdateManyDataInput {
   avatar: String
   email: String
   password: String
-  role: AuthRole
+  role: Role
 }
 
 input UserUpdateManyInput {
@@ -1116,7 +1116,7 @@ input UserUpdateManyMutationInput {
   avatar: String
   email: String
   password: String
-  role: AuthRole
+  role: Role
 }
 
 input UserUpdateManyWithoutRoomsInput {
@@ -1149,7 +1149,7 @@ input UserUpdateWithoutMessagesDataInput {
   avatar: String
   email: String
   password: String
-  role: AuthRole
+  role: Role
   friends: UserUpdateManyInput
   rooms: RoomUpdateManyWithoutUsersInput
 }
@@ -1160,7 +1160,7 @@ input UserUpdateWithoutRoomsDataInput {
   avatar: String
   email: String
   password: String
-  role: AuthRole
+  role: Role
   friends: UserUpdateManyInput
   messages: MessageUpdateManyWithoutAuthorInput
 }
@@ -1277,10 +1277,10 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
-  role: AuthRole
-  role_not: AuthRole
-  role_in: [AuthRole!]
-  role_not_in: [AuthRole!]
+  role: Role
+  role_not: Role
+  role_in: [Role!]
+  role_not_in: [Role!]
   friends_every: UserWhereInput
   friends_some: UserWhereInput
   friends_none: UserWhereInput

@@ -218,7 +218,7 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type AuthRole = "ADMIN" | "USER";
+export type Role = "ADMIN" | "USER";
 
 export type RoomOrderByInput =
   | "id_ASC"
@@ -472,10 +472,10 @@ export interface UserWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
-  role?: Maybe<AuthRole>;
-  role_not?: Maybe<AuthRole>;
-  role_in?: Maybe<AuthRole[] | AuthRole>;
-  role_not_in?: Maybe<AuthRole[] | AuthRole>;
+  role?: Maybe<Role>;
+  role_not?: Maybe<Role>;
+  role_in?: Maybe<Role[] | Role>;
+  role_not_in?: Maybe<Role[] | Role>;
   friends_every?: Maybe<UserWhereInput>;
   friends_some?: Maybe<UserWhereInput>;
   friends_none?: Maybe<UserWhereInput>;
@@ -603,7 +603,7 @@ export interface UserCreateWithoutRoomsInput {
   avatar?: Maybe<String>;
   email: String;
   password: String;
-  role?: Maybe<AuthRole>;
+  role?: Maybe<Role>;
   friends?: Maybe<UserCreateManyInput>;
   messages?: Maybe<MessageCreateManyWithoutAuthorInput>;
 }
@@ -620,7 +620,7 @@ export interface UserCreateInput {
   avatar?: Maybe<String>;
   email: String;
   password: String;
-  role?: Maybe<AuthRole>;
+  role?: Maybe<Role>;
   friends?: Maybe<UserCreateManyInput>;
   rooms?: Maybe<RoomCreateManyWithoutUsersInput>;
   messages?: Maybe<MessageCreateManyWithoutAuthorInput>;
@@ -673,7 +673,7 @@ export interface UserCreateWithoutMessagesInput {
   avatar?: Maybe<String>;
   email: String;
   password: String;
-  role?: Maybe<AuthRole>;
+  role?: Maybe<Role>;
   friends?: Maybe<UserCreateManyInput>;
   rooms?: Maybe<RoomCreateManyWithoutUsersInput>;
 }
@@ -772,7 +772,7 @@ export interface UserUpdateWithoutRoomsDataInput {
   avatar?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  role?: Maybe<AuthRole>;
+  role?: Maybe<Role>;
   friends?: Maybe<UserUpdateManyInput>;
   messages?: Maybe<MessageUpdateManyWithoutAuthorInput>;
 }
@@ -808,7 +808,7 @@ export interface UserUpdateDataInput {
   avatar?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  role?: Maybe<AuthRole>;
+  role?: Maybe<Role>;
   friends?: Maybe<UserUpdateManyInput>;
   rooms?: Maybe<RoomUpdateManyWithoutUsersInput>;
   messages?: Maybe<MessageUpdateManyWithoutAuthorInput>;
@@ -907,7 +907,7 @@ export interface UserUpdateWithoutMessagesDataInput {
   avatar?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  role?: Maybe<AuthRole>;
+  role?: Maybe<Role>;
   friends?: Maybe<UserUpdateManyInput>;
   rooms?: Maybe<RoomUpdateManyWithoutUsersInput>;
 }
@@ -1195,10 +1195,10 @@ export interface UserScalarWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
-  role?: Maybe<AuthRole>;
-  role_not?: Maybe<AuthRole>;
-  role_in?: Maybe<AuthRole[] | AuthRole>;
-  role_not_in?: Maybe<AuthRole[] | AuthRole>;
+  role?: Maybe<Role>;
+  role_not?: Maybe<Role>;
+  role_in?: Maybe<Role[] | Role>;
+  role_not_in?: Maybe<Role[] | Role>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1231,7 +1231,7 @@ export interface UserUpdateManyDataInput {
   avatar?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  role?: Maybe<AuthRole>;
+  role?: Maybe<Role>;
 }
 
 export interface UserUpsertWithWhereUniqueWithoutRoomsInput {
@@ -1292,7 +1292,7 @@ export interface UserUpdateInput {
   avatar?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  role?: Maybe<AuthRole>;
+  role?: Maybe<Role>;
   friends?: Maybe<UserUpdateManyInput>;
   rooms?: Maybe<RoomUpdateManyWithoutUsersInput>;
   messages?: Maybe<MessageUpdateManyWithoutAuthorInput>;
@@ -1304,7 +1304,7 @@ export interface UserUpdateManyMutationInput {
   avatar?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  role?: Maybe<AuthRole>;
+  role?: Maybe<Role>;
 }
 
 export interface CategorySubscriptionWhereInput {
@@ -1514,7 +1514,7 @@ export interface User {
   avatar?: String;
   email: String;
   password: String;
-  role: AuthRole;
+  role: Role;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -1526,7 +1526,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   avatar: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  role: () => Promise<AuthRole>;
+  role: () => Promise<Role>;
   friends: <T = FragmentableArray<User>>(args?: {
     where?: UserWhereInput;
     orderBy?: UserOrderByInput;
@@ -1567,7 +1567,7 @@ export interface UserSubscription
   avatar: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<AuthRole>>;
+  role: () => Promise<AsyncIterator<Role>>;
   friends: <T = Promise<AsyncIterator<UserSubscription>>>(args?: {
     where?: UserWhereInput;
     orderBy?: UserOrderByInput;
@@ -1608,7 +1608,7 @@ export interface UserNullablePromise
   avatar: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  role: () => Promise<AuthRole>;
+  role: () => Promise<Role>;
   friends: <T = FragmentableArray<User>>(args?: {
     where?: UserWhereInput;
     orderBy?: UserOrderByInput;
@@ -2117,7 +2117,7 @@ export interface UserPreviousValues {
   avatar?: String;
   email: String;
   password: String;
-  role: AuthRole;
+  role: Role;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -2131,7 +2131,7 @@ export interface UserPreviousValuesPromise
   avatar: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  role: () => Promise<AuthRole>;
+  role: () => Promise<Role>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -2145,7 +2145,7 @@ export interface UserPreviousValuesSubscription
   avatar: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<AuthRole>>;
+  role: () => Promise<AsyncIterator<Role>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -2189,7 +2189,7 @@ export type Long = string;
 
 export const models: Model[] = [
   {
-    name: "AuthRole",
+    name: "Role",
     embedded: false
   },
   {

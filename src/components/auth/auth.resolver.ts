@@ -17,20 +17,20 @@ export class AuthResolver {
   @Mutation(returns => AuthModel)
   public async signUp(@Args('data') data: SignUpInput): Promise<AuthModel> {
     data.email = data.email.toLowerCase();
-    const authToken = await this.auth.createUser(data);
-    return { authToken };
+    const accessToken = await this.auth.createUser(data);
+    return { accessToken };
   }
 
   @Mutation(returns => AuthModel)
   public async signIn(@Args('data') { email, password }: SignInInput): Promise<
     AuthModel
   > {
-    const authToken = await this.auth.login(email.toLowerCase(), password);
-    return { authToken };
+    const accessToken = await this.auth.login(email.toLowerCase(), password);
+    return { accessToken };
   }
 
   @ResolveProperty(returns => UserModel)
-  public async user(@Parent() { authToken }: AuthModel): Promise<User> {
-    return this.auth.getUserFromToken(authToken);
+  public async user(@Parent() { accessToken }: AuthModel): Promise<User> {
+    return this.auth.getUserFromAccessToken(accessToken);
   }
 }

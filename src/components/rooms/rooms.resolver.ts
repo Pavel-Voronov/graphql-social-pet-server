@@ -19,7 +19,7 @@ import {
 export class RoomsResolver {
   public constructor(private readonly prisma: PrismaService) {}
 
-  @Query(returns => [RoomModel])
+  @Query(returns => RoomModel)
   public async room(@Args() { id }: RoomArgs): Promise<Room> {
     return this.prisma.client.room({ id });
   }

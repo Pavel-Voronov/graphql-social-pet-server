@@ -1,3 +1,3 @@
-export type IAuthRole = 'ADMIN' | 'USER';
+export type IRole = 'ADMIN' | 'USER';
 
-export type IAuthToken = string;
+export type IToken = string;

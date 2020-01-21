@@ -8,6 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 import { User } from '../../generated/prisma-client';
 import { SignUpInput } from './auth.dto';
 import { Helpers } from '../../shared/helpers';
+import { IToken } from '../../shared/types';
 
 @Injectable()
 export class AuthService {
@@ -16,8 +17,9 @@ export class AuthService {
     private readonly prisma: PrismaService
   ) {}
 
-  private generateAuthToken(user: User): string {
-    return this.jwtService.sign({ userId: user.id });
+  private generateAccessToken(user: User): string {
+    const { id, role, firstName, lastName } = user;
+    return this.jwtService.sign({ id, role, firstName, lastName });
   }
 
   public async createUser(payload: SignUpInput): Promise<string> {
@@ -28,13 +30,13 @@ export class AuthService {
       password: hashedPassword
     });
 
-    return this.generateAuthToken(user);
+    return this.generateAccessToken(user);
   }
 
   public async login(email: string, password: string): Promise<string> {
     const user = await this.validateUserByCredentials(email, password);
 
-    return this.generateAuthToken(user);
+    return this.generateAccessToken(user);
   }
 
   public async validateUserByCredentials(
@@ -59,8 +61,8 @@ export class AuthService {
     return this.prisma.client.user({ id });
   }
 
-  public async getUserFromToken(token: string): Promise<User> {
-    const id = this.jwtService.decode(token)['userId'];
+  public async getUserFromAccessToken(accessToken: IToken): Promise<User> {
+    const id = this.jwtService.decode(accessToken)['id'];
     return this.prisma.client.user({ id });
   }
 }

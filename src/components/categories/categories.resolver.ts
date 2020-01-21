@@ -12,8 +12,10 @@ import { Room, Category } from '../../generated/prisma-client';
 import { CategoryModel, RoomModel } from '../../models';
 import { GqlAuthGuard, GqlAuthRolesGuard } from '../../shared/guards';
 import { CategoryArgs, CreateCategoryInput } from './categories.dto';
-import { AuthRoles } from '../../shared/decorators';
-import { AUTH_ROLES } from '../../shared/constants';
+import { Roles } from '../../shared/decorators';
+import { ROLES } from '../../shared/constants';
+
+const { ADMIN } = ROLES;
 
 @Resolver(CategoryModel)
 export class CategoriesResolver {
@@ -29,7 +31,7 @@ export class CategoriesResolver {
     return this.prisma.client.category({ id });
   }
 
-  @AuthRoles(AUTH_ROLES.ADMIN)
+  @Roles(ADMIN)
   @UseGuards(GqlAuthGuard, GqlAuthRolesGuard)
   @Mutation(returns => CategoryModel)
   public async createCategory(

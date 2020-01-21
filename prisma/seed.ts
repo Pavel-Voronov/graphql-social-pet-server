@@ -1,4 +1,7 @@
-import { prisma, AuthRole } from '../src/generated/prisma-client';
+import { prisma } from '../src/generated/prisma-client';
+import { ROLES } from '../src/shared/constants';
+
+const { USER, ADMIN } = ROLES;
 
 const categoriesData = [
   { title: 'games' },
@@ -13,21 +16,21 @@ const usersData = [
     firstName: 'Bob',
     lastName: 'Smith',
     password: '$2a$10$wPoVofrf9FD17VBFcmTaAOwLSq4h3Q9.kwLrC1l7obBl4tw6TM3w2',
-    role: 'ADMIN' as AuthRole
+    role: ADMIN
   },
   {
     email: 'user@gmail.com',
     firstName: 'Vasya',
     lastName: 'Smith',
     password: '$2a$10$wPoVofrf9FD17VBFcmTaAOwLSq4h3Q9.kwLrC1l7obBl4tw6TM3w2',
-    role: 'USER' as AuthRole
+    role: USER
   },
   {
     email: 'user2@gmail.com',
     firstName: 'Cho',
     lastName: 'Smith',
     password: '$2a$10$wPoVofrf9FD17VBFcmTaAOwLSq4h3Q9.kwLrC1l7obBl4tw6TM3w2',
-    role: 'USER' as AuthRole
+    role: USER
   }
 ];
 

@@ -1,5 +1,5 @@
 import { Field, ObjectType, registerEnumType } from 'type-graphql';
-import { AUTH_ROLES } from '../shared/constants';
+import { ROLES } from '../shared/constants';
 import { RoomModel, MessageModel } from './';
 
 @ObjectType()
@@ -19,8 +19,8 @@ export class UserModel {
   @Field({ nullable: true })
   avatar?: string;
 
-  @Field(type => AUTH_ROLES)
-  role: AUTH_ROLES;
+  @Field(type => ROLES)
+  role: ROLES;
 
   @Field(type => Date)
   createdAt: Date;
@@ -40,7 +40,7 @@ export class UserModel {
   password: string;
 }
 
-registerEnumType(AUTH_ROLES, {
-  name: 'AuthRole',
+registerEnumType(ROLES, {
+  name: 'Role',
   description: 'User role'
 });

@@ -1,5 +1,6 @@
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 import { InputType, Field } from 'type-graphql';
+import { ROLES } from '../../shared/constants';
 
 @InputType()
 export class SignUpInput {
@@ -34,5 +35,8 @@ export class SignInInput {
 }
 
 export interface JwtDto {
-  userId: string;
+  id: string;
+  role: ROLES;
+  firstName: string;
+  lastName: string;
 }

@@ -5,14 +5,8 @@
 
 type AuthModel {
   """JWT Bearer token"""
-  authToken: String!
+  accessToken: String!
   user: UserModel!
-}
-
-"""User role"""
-enum AuthRole {
-  ADMIN
-  USER
 }
 
 type CategoryModel {
@@ -62,7 +56,13 @@ type Query {
   categories: [CategoryModel!]!
   category(id: String!): CategoryModel!
   me: UserModel!
-  room(id: String!): [RoomModel!]!
+  room(id: String!): RoomModel!
+}
+
+"""User role"""
+enum Role {
+  ADMIN
+  USER
 }
 
 type RoomModel {
@@ -98,7 +98,7 @@ type UserModel {
   firstName: String!
   lastName: String!
   avatar: String
-  role: AuthRole!
+  role: Role!
   createdAt: DateTime!
   updatedAt: DateTime!
   rooms: [RoomModel!]!

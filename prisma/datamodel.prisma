@@ -1,4 +1,4 @@
-enum AuthRole {
+enum Role {
   ADMIN
   USER
 }
@@ -18,7 +18,7 @@ type User {
   avatar: String
   email: String! @unique
   password: String!
-	role: AuthRole! @default(value: USER)
+	role: Role! @default(value: USER)
   friends: [User]!
   rooms: [Room]!
   messages: [Message]!
